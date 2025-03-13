@@ -59,3 +59,38 @@ Angular CLI 預設沒有附帶端對端測試框架。您可以選擇一個適�
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 有關使用 Angular CLI 的更多信息，包括詳細的命令參考，請訪問 [Angular CLI 概述和命令參考](https://angular.dev/tools/cli) 頁面。
+
+
+# Angular Material快速建立各種元件
+安裝
+```
+ng add @angular/material
+```
+ Determining Package Manager
+✔ Determining Package Manager
+✔ Determining Package Manager
+✔ Determining Package Manager
+✔ Determining Package Manager
+✔ Determining Package Manager
+  › Using package manager: npm
+✔ Searching for compatible package version
+  › Found compatible package version: @angular/material@19.2.3.
+✔ Loading package information from registry
+✔ Confirming installation
+✔ Installing package
+✔ Choose a prebuilt theme name, or "custom" for a custom theme: Azure/Blue      
+   [Preview: https://material.angular.io?theme=azure-blue]
+? Set up global Angular Material typography styles? (y/N)
+
+ex 創建頁面或是功能
+```
+ng g c 頁面或是功能
+ng g c ToDo
+```
+生成的檔案會是『大寫小寫英文-大寫小寫英文.component』副檔名會有
+<ul>
+  <li>.html:HTML檔案</li>
+  <li>.scss:樣式</li>
+  <li>.spec.ts:單元測試檔案</li>
+  <li>.ts:資料定義與函式</li>
+</ul>
