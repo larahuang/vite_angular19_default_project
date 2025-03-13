@@ -1,0 +1,8 @@
+<ul  class="nav">
+      <li *ngFor="let item of sendNavLists ; let i = index"
+      [ngClass]="sendPageTitle === item.title ? 'activeNav' : ''">
+        <a [routerLink]="item.path"
+        (click)="sendActionList(item.title)"
+        class="cursor-pointer">{{item.title}}</a>
+      </li>
+</ul>

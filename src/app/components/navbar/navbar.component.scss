@@ -1,0 +1,29 @@
+.nav {
+  background-color: #ffd207;
+  box-shadow: 2px 2px 2px 1px #0003;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0px auto auto auto;
+  padding-inline-start: 0px;
+  max-width: 100%;
+  width: 100%;
+
+  li {
+    display: flex;
+    list-style-type: none;
+    margin: auto 10px;
+
+    a {
+      cursor: pointer;
+      color: #333;
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+  }
+}
+
+.activeNav {
+  border-bottom: 1px solid #333;
+}
