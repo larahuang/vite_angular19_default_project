@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NgFor,NgIf,NgClass } from '@angular/common';
+import { CommonModule,NgFor,NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { navListType } from "../../Types/nav"
 @Component({
   selector: 'app-navbar',
-  imports: [NgFor,NgIf,NgClass,RouterLink],
+  imports: [NgFor,NgClass,RouterLink,CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
