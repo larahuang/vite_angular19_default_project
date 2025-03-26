@@ -20,8 +20,8 @@ export class AppComponent {
   ]
   pageTitle: string = 'Home';
   isActive: boolean = false;
-  actionList(path: string) {
-    this.pageTitle = path;
+  actionList(title: string) {
+    this.pageTitle = title;
   }
   ngOnInit(): void  {
     console.log(environment.production ? 'Production' : '開發中')

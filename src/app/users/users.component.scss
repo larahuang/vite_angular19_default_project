@@ -1,0 +1,53 @@
+.btn{
+  display: flex;
+  height: 35px;
+  width:70px;
+  justify-content: center;
+  align-items: center;
+}
+.edit{
+  background-color: #ff9800;
+  border: 1px solid #ff9800;
+  color:white;
+  &:hover,&:focus{
+    background-color: #bc750c;
+    border: 1px solid #bc750c;
+  }
+}
+.delete{
+  background-color: red;
+  border: 1px solid red;
+  color:white;
+  &:hover,&:focus{
+    background-color: rgb(182, 9, 9);
+    border: 1px solid rgb(182, 9, 9);
+  }
+}
+.lists{
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  max-width: 60%;
+  margin: auto;
+  ul{
+    list-style: none;
+    padding-inline-start: 0px;
+     width: 100%;
+  max-width: 100%;
+    li{
+      list-style: none;
+      line-height: 45px;
+      display: flex;
+      border-bottom:1px solid #ddd;
+      .subject{
+        display: flex;
+        width: 70%;
+        padding: 2px auto;
+        padding-left: 15px;
+      }
+      a{
+        margin: 5px;
+      }
+    }
+  }
+}
