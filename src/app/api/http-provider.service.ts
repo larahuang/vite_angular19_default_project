@@ -9,7 +9,7 @@ export class HttpProviderService {
   private readonly webApiService = inject(WebApiService);
 
   getAllLists(): Observable<any> {
-    console.log( this.webApiService)
+   // console.log( this.webApiService)
     return this.webApiService.get(`${this.apiUrl}/api/toDoLists`);
   }
   // 編輯
@@ -32,7 +32,7 @@ export class HttpProviderService {
 
   // 編輯
   updateTodo(item: any): Observable<any> {
-      console.log('updateTodo', item)
+      // console.log('updateTodo', item)
     let query:any = {
       title: item.title,
       buildDate: dayjs(item.buildDate).valueOf(),//改為時間搓

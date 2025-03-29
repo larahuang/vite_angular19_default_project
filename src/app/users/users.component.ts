@@ -3,11 +3,11 @@ import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, firstValueFrom, map, Observable, of, tap ,catchError } from "rxjs";
 import { environment } from '../../environments/environment';
-import { NgFor, NgIf, NgClass, CommonModule } from '@angular/common';
+import {  NgIf, NgClass, CommonModule } from '@angular/common';
 import { addListsType } from '../Types/toDo'
 @Component({
   selector: 'app-users',
-  imports: [NgFor,CommonModule,RouterModule,],
+  imports: [CommonModule,RouterModule,],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

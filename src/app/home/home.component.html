@@ -5,46 +5,15 @@
   >
   <div class="errorMessage">{{errorMessage}}</div>
 </div>
-<div class="lists">
-  <ul *ngIf="todoList$">
-    <!---->
-    <li *ngFor="let item of todoList$ | async">
-      <div class="subject">
-        <label [for]="item._id">
-          <span class="edit_area"
-          [ngClass]="itemId === item._id ? 'noEditing' : ''"
-          >
-          {{item.title}}
-          </span>
-          <div class="edit_input_area"
-           [ngClass]="itemId === item._id ? 'editing' : ''"
-         >
-            <input
-          type="text"
-          [(ngModel)]="item.title"
-          [value]="item.title"
-          (blur)="blurEvent($event)">
-          <div class="errorMessage">
-          {{errorItemMessage}}</div>
-          </div>
-        </label>
-      </div>
-      <div class="buildDate">
-        {{item.buildDate}}
-      </div>
-      <div class="updataDate">
-        {{item.updataDate}}
-      </div>
-        <button (click)="openEditItem(item)"
-         [ngClass]="itemId === item._id ? 'noEditing' : ''"
-        class="btn edit" ><span>編輯</span><i class="fa-solid fa-pencil"></i></button>
-        <!----[attr.disabled]="errorItemMessage.length>0"-->
-         <button (click)="editItem(item)"
-         [ngClass]="itemId === item._id ? 'editing' : ''"
-         class="btn add"><span>儲存</span><i class="fa-solid fa-plus"></i></button>
-        <button
-        (click)="openDeleteAlert(item._id)"
-        class="btn delete"><span>刪除</span> <i class="fa-solid fa-xmark"></i></button>
-    </li>
-  </ul>
-</div>
+
+<app-to-do-list
+[sendTodoList$]="todoList$"
+[sendItemId]="itemId"
+[sendErrorItemMessage]="errorItemMessage"
+(newItem)="openEditItem($event)"
+(newUpdateItem)="editItem($event)"
+(newId)="openDeleteAlert($event)"
+(newId)="deleteItem($event)"
+(newEvent)="blurEvent($event)"
+></app-to-do-list>
+

@@ -3,21 +3,21 @@ import { Router, RouterModule } from '@angular/router';
 import { HttpProviderService } from '../api/http-provider.service';
 import { BehaviorSubject, catchError, Observable, of, tap , from,fromEvent, scan,map, shareReplay} from 'rxjs';
 import { FormsModule } from '@angular/forms'
-import { NgFor, NgIf, NgClass,CommonModule } from '@angular/common';
+import {  CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment'
+import { ToDoListComponent } from '../components/to-do-list/to-do-list.component'
 import { addListsType } from '../Types/toDo'
 import dayjs from 'dayjs'
 
 @Component({
   selector: 'app-home',
-  imports: [NgFor,NgIf,CommonModule,RouterModule, NgClass,FormsModule,],
+  imports: [CommonModule,RouterModule,FormsModule,ToDoListComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 
 export class HomeComponent implements OnInit {
-[x: string]: any;
   private readonly httpProvider = inject(HttpProviderService);
   //BehaviorSubject：行為主體
   /**
@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
   newTask: string = '';
   errorMessage: string = ''
   blurEvent(event: any) {
+    console.log('blurEvent', event)
     const regZero = /^$/g;
     // 正向先行断言
     const regEx2 = /^(?=\s*$)/g;
@@ -79,7 +80,6 @@ export class HomeComponent implements OnInit {
           })
        });
        this.todoLists.next(arrLists);
-      // console.log('this.todoLists', this.todoLists)
      }),
      catchError((error: any) => {
        console.error("獲取錯誤:", error);
@@ -91,23 +91,40 @@ export class HomeComponent implements OnInit {
 
   itemId: string = '';
   isActive: boolean = false;
-  openEditItem(item:addListsType) {
-     this.itemId = item._id;
+  isOpenEditItem: boolean = false;
+  EditItem:addListsType |undefined;
+  openEditItem(item: addListsType) {
+    this.itemId = item._id;
+    item.Editing = true;
+    this.EditItem = item;
   }
   //https://stackblitz.com/edit/github-umtlsr?file=src%2Fapp%2Ftodos%2Ffeature%2Ftodos-list%2Ftodos-list.component.ts&source=post_page-----2b4093f485a0---------------------------------------
   errorItemMessage: string = '';
-  editItem(item: addListsType) {
-    this.httpProvider.updateTodo(item).subscribe({
+  editItem(item:addListsType) {
+    if (item.Editing && item.title.length>0) {
+      let query = {
+        _id: item._id,
+            title: item.title,
+            Editing: false, // 編輯
+            Status: false, //選取狀態
+            CanEdit: true, //可以編輯
+            buildDate:item.buildDate,
+            updataDate: dayjs(item.updataDate).format('YYYY-MM-DD HH:mm'),
+      }
+      this.httpProvider.updateTodo(query).subscribe({
         next: () => {
-          console.log('item', item)
-         alert('修改' + item.title)
-         this.itemId = '';
+          this.itemId = '';
+          if (this.itemId === '') {
+            alert('修改' + item.title)
+          }
         },
-
-       error: (err) => {
-         console.log('err',err)
-      },
-    });
+        error: (err) => {
+          console.log('err', err)
+        },
+      });
+    } else {
+      this.errorItemMessage= '不能為空！'
+    }
   }
   openDeleteAlert(_id:string) {
     this.deleteItem(_id)

@@ -1,0 +1,233 @@
+.btn{
+  display: flex;
+  height: 35px;
+  width:70px;
+  justify-content: center;
+  align-items: center;
+}
+.add{
+  background-color: green;
+  border: 1px solid green;
+  color:white;
+  &:hover,&:focus{
+    background-color: #0f760f;
+    border: 1px solid #0f760f;
+  }
+}
+.edit{
+  background-color: #ff9800;
+  border: 1px solid #ff9800;
+  color:white;
+  &:hover,&:focus{
+    background-color: #bc750c;
+    border: 1px solid #bc750c;
+  }
+}
+.delete{
+  background-color: red;
+  border: 1px solid red;
+  color:white;
+  &:hover,&:focus{
+    background-color: rgb(182, 9, 9);
+    border: 1px solid rgb(182, 9, 9);
+  }
+}
+.add_form{
+   display: flex;
+  justify-content: flex-start;
+  width: 60%;
+  max-width: 60%;
+  margin:20px auto;
+  flex-direction: column;
+  input[type="text"]{
+    border:2px solid #80bdff;
+    margin-left: 0rem;
+    max-width:95%;
+    width:95%;
+    display: flex;
+  }
+  .errorMessage{
+    display: flex;
+    color:red;
+    font-size: 12px;
+    margin-top: 3px;
+  }
+}
+.lists{
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  max-width: 60%;
+  margin: auto;
+  ul{
+    list-style: none;
+    padding-inline-start: 0px;
+     width: 100%;
+  max-width: 100%;
+    li{
+      border-bottom:1px solid #ddd;
+      display: flex;
+      list-style: none;
+      .subject{
+        align-items: center;
+        display: flex;
+        padding: 2px auto;
+        padding-left: 15px;
+        width: 50%;
+        label{
+          display: flex;
+          justify-content: flex-start;
+          width: 95%;
+          span.edit_area{
+             display:flex;
+             &.noEditing{
+                display: none;
+              }
+          }
+          .edit_input_area{
+            align-items: center;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 100%;
+            input{
+              display: flex;
+              border: 1px dashed #263238;
+            }
+            &.editing{
+                display: flex;
+            }
+          }
+        }
+
+      }
+      .buildDate,.updataDate{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+        font-size: 14px;
+        padding-left: 6px;
+      }
+      a,button{
+        margin: 5px;
+        cursor: pointer;
+        &:disabled {
+           cursor: not-allowed;
+        }
+        i{
+          margin-left: 5px;
+        }
+        &.edit{
+          display: flex;
+          &.noEditing{
+            display: none;
+          }
+        }
+        &.add{
+          display: none;
+          &.editing{
+            display: flex;
+          }
+          &:disabled{
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+input{
+    display: block;
+    width: 100%;
+    height: calc(1.2em + .75rem + 2px);
+    padding: 0.075rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    margin-left: -.75rem;
+    &:hover{
+      color: #495057;
+      background-color: #fff;
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+    }
+}
+.errorMessage{
+  color:red;
+  font-size: 12px;
+  align-self: flex-start;
+  margin-left: -15px;
+}
+
+
+
+.editing{
+  display: flex;
+}
+.noEditing{
+  display: none;
+}
+
+
+@media screen and (width<=820px){
+  .add_form,
+  .lists{
+     width: 80%;
+    max-width: 80%;
+  }
+}
+@media screen and (width<=600px){
+  .lists ul li a {
+    span{
+      display: none;
+    }
+      i{
+        font-size: 1.4rem;
+      }
+      &.delete{
+        i{
+          font-size: 1.7rem;
+        }
+      }
+  }
+}
+//iphone 14 pro
+@media screen and (width<=430px){
+  .lists ul li {
+    margin-left: -15px;
+    .subject label .edit_area{
+      font-size: 1.1rem;
+    }
+  }
+}
+@media screen and (width<=414px){
+  .lists ul li {
+    margin-left: -15px;
+    .subject label .edit_area{
+      font-size: 1.1rem;
+    }
+    a{
+      &.btn{
+        width: 50px;
+      }
+      i{
+        font-size: 1.4rem;
+      }
+      &.delete{
+        i{
+          font-size: 1.7rem;
+        }
+      }
+    }
+  }
+}
