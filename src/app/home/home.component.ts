@@ -32,8 +32,24 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getAllList();
   }
+
   newTask: string = '';
   errorMessage: string = ''
+  blurNewTask(event: any) {
+    console.log('blurNewTask', event)
+    const regZero = /^$/g;
+    const regEx2 = /^(?=\s*$)/g;
+    const regEx3 = /^(?!.*\S)/g;
+    if (regZero.test(event.target.value) || regEx2.test(event.target.value) || regEx3.test(event.target.value)) {
+       this.errorMessage= '不能為空！'
+    }else if (event.target.value.length<2) {
+       this.errorMessage='不能小於2！'
+    }
+    else {
+      this.errorMessage=''
+    }
+   }
+ errorItemMessage: string = '';
   blurEvent(event: any) {
     console.log('blurEvent', event)
     const regZero = /^$/g;
@@ -49,15 +65,16 @@ export class HomeComponent implements OnInit {
     else {
       this.errorItemMessage=''
     }
-}
-  addItem(newTask: string) {
+  }
+
+addItem(newTask: string) {
       this.httpProvider.addList(newTask).subscribe({
         next: () => {
           alert('add' +newTask);
           this.getAllList()
         }
       })
-  }
+}
 
   //獲取數據
  async getAllList() {
@@ -75,11 +92,14 @@ export class HomeComponent implements OnInit {
             updataDate: dayjs(item.updataDate).format('YYYY-MM-DD HH:mm'),
           };
           arrLists.push(query);
+         // 排序
          arrLists.sort((a, b) => {
               return dayjs(b.buildDate).valueOf() -   dayjs(a.buildDate).valueOf()
-          })
+         })
+
        });
        this.todoLists.next(arrLists);
+        console.log('arrLists.length', arrLists.length)
      }),
      catchError((error: any) => {
        console.error("獲取錯誤:", error);
@@ -99,7 +119,7 @@ export class HomeComponent implements OnInit {
     this.EditItem = item;
   }
   //https://stackblitz.com/edit/github-umtlsr?file=src%2Fapp%2Ftodos%2Ffeature%2Ftodos-list%2Ftodos-list.component.ts&source=post_page-----2b4093f485a0---------------------------------------
-  errorItemMessage: string = '';
+
   editItem(item:addListsType) {
     if (item.Editing && item.title.length>0) {
       let query = {

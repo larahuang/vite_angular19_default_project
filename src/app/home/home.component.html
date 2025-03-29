@@ -1,6 +1,7 @@
 <div class="add_form">
   <input type="text"
   [(ngModel)]="newTask"
+   (blur)="blurNewTask($event)"
   (keyup.enter)="addItem(newTask)"
   >
   <div class="errorMessage">{{errorMessage}}</div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './components/navbar/navbar.component';
+
 import { navListType } from "./Types/nav"
 @Component({
   selector: 'app-root',
